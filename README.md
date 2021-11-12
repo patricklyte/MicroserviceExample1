@@ -1,5 +1,5 @@
 # Microservice Example 1
- 2 Microservices with 1 Admin Service
+ 2 Springboot Microservices with 1 Springboot Admin Service, infrastructure example
  
 
  Logins:
