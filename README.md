@@ -1,4 +1,4 @@
-# Microservice Example 1
+# Springboot Microservice Collaboration Example
  2 Springboot Microservices with 1 Springboot Admin Service, infrastructure example
  
 
