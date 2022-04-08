@@ -12,16 +12,16 @@ import javax.persistence.*;
 @Setter
 @ToString
 @SuperBuilder
-@Table(name = "location_entity")
+@Table(name = "job_entity")
 @Entity
 @NoArgsConstructor
-public class LocationEntity {
+public class JobEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "zip")
+    @Column(name = "company")
     private String zip;
-    ;@Column(name = "name")
+    ;@Column(name = "url")
     private String name;
 }

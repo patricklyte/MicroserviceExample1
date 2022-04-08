@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Job
+  description: 'Contract Job'
+  version: 0.0.1
+  license:
+    name: 'Test API 1.0'
+    url: 'https://www.test.test'
+
+paths:
+  /job/{id}/status:
+    get:
+      summary: Job Status
+      operationId: getJobStatus
+      tags:
+        - Job
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: 'Status of Job'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobDto'
+        '401':
+          $ref: "#/components/responses/ApiError"
+        '404':
+          description: 'no Job found'
+          $ref: "#/components/responses/ApiError"
+        '500':
+          $ref: '#/components/responses/ApiError'
+
+components:
+  schemas:
+    BaseDto:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+
+    UUID:
+      type: string
+      format: uuid
+
+    JobDto:
+      allOf:
+        - $ref: '#/components/schemas/BaseDto'
+        - type: object
+          properties:
+            description:
+              type: string
+              maxLength: 1000
+      required:
+        - description
+
+    GenericMessageDto:
+      description: 'Generic Message'
+      type: object
+      properties:
+        meldungsTyp:
+          type: integer
+        meldungsCode:
+          type: string
+        meldungsId:
+          type: string
+          format: uuid
+        message:
+          type: string
+
+  responses:
+    ApiError:
+      description: 'Error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GenericMessageDto'

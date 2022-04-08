@@ -8,10 +8,5 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface LocationRepository extends JpaRepository<LocationEntity, Long>, JpaSpecificationExecutor<LocationEntity> {
-    Optional<LocationEntity> findByZip(String zip);
-    Optional<LocationEntity> findByName(String zip);
-
-    List<LocationEntity> findByZipLike(String zip);
-
+public interface JobRepository extends JpaRepository<JobEntity, Long>, JpaSpecificationExecutor<JobEntity> {
 }

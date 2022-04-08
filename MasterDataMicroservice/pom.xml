@@ -51,6 +51,27 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
+		<!--OpenApi-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.6</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger.parser.v3</groupId>
+			<artifactId>swagger-parser</artifactId>
+			<version>2.0.31</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -66,6 +87,36 @@
 					<source>16</source>
 					<target>16</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>4.2.2</version>
+				<executions>
+					<execution>
+						<id>generate-service</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/contract.yml</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>ch.meng.patrick.api</apiPackage>
+							<modelPackage>ch.meng.patrick.dto</modelPackage>
+							<generateModels>true</generateModels>
+							<generateApis>true</generateApis>
+							<generateSupportingFiles>true</generateSupportingFiles>
+							<generateApiDocumentation>false</generateApiDocumentation>
+							<generateApiTests>false</generateApiTests>
+							<configOptions>
+								<bigDecimalAsString>true</bigDecimalAsString>
+								<reactive>false</reactive>
+								<interfaceOnly>true</interfaceOnly>
+								<useOptional>true</useOptional>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
